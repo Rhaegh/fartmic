@@ -1,19 +1,26 @@
-var input = document.getElementById("input");
-var output = document.getElementById("output");
-var socket = new WebSocket("ws://localhost:8080/echo");
+var sock = null;
+var wsuri = "ws://192.168.72.131:8080/socket"; // <-- note new path
 
-socket.onopen = function () {
-	output.innerHTML += "Status: Connected\n";
+window.onload = function() {
+
+	console.log("onload");
+
+	sock = new WebSocket(wsuri);
+
+	sock.onopen = function() {
+		console.log("connected to " + wsuri);
+	}
+
+	sock.onclose = function(e) {
+		console.log("connection closed (" + e.code + ")");
+	}
+
+	sock.onmessage = function(e) {
+		console.log("message received: " + e.data);
+	}
 };
-
-socket.onmessage = function (e) {
-	output.innerHTML += "Server: " + e.data + "\n";
-};
-
-function isOpen(ws) { return ws.readyState === ws.OPEN }
 
 function send() {
-	if (!isOpen(socket)) return;
-		socket.send(input.value);
-		input.value = "";
-}
+	var msg = document.getElementById('message').value;
+	sock.send(msg);
+};

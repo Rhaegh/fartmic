@@ -2,40 +2,40 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
-	"github.com/gorilla/websocket"
+	"code.google.com/p/go.net/websocket"
 )
 
-var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
+func Echo(ws *websocket.Conn) {
+	var err error
+
+	for {
+		var reply string
+
+		if err = websocket.Message.Receive(ws, &reply); err != nil {
+			fmt.Println("Can't receive")
+			break
+		}
+
+		fmt.Println("Received back from client: " + reply)
+
+		msg := "Received:  " + reply
+		fmt.Println("Sending to client: " + msg)
+
+		if err = websocket.Message.Send(ws, msg); err != nil {
+			fmt.Println("Can't send")
+			break
+		}
+	}
 }
 
 func main() {
-	http.HandleFunc("/echo", func(w http.ResponseWriter, r *http.Request) {
-		conn, _ := upgrader.Upgrade(w, r, nil) // error ignored for sake of simplicity
-
-		for {
-			// Read message from browser
-			msgType, msg, err := conn.ReadMessage()
-			if err != nil {
-				return
-			}
-
-			// Print the message to the console
-			fmt.Printf("%s sent: %s\n", conn.RemoteAddr(), string(msg))
-
-			// Write message back to browser
-			if err = conn.WriteMessage(msgType, msg); err != nil {
-				return
-			}
-		}
-	})
-
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "websockets.html")
-	})
-
-	http.ListenAndServe(":8080", nil)
+	http.Handle("/", http.FileServer(http.Dir("."))) // <-- note this line
+	http.Handle("/socket", websocket.Handler(Echo))
+	log.Println("serving")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal("ListenAndServe:", err)
+	}
 }
