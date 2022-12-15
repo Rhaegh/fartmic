@@ -32,7 +32,7 @@ stream.close()
 audio.terminate()
 
 # save the audio frames as .wav file
-wavefile = wave.open(wav_output_filename + ".wav",'wb')
+wavefile = wave.open("/home/pi/fartmic/audiofiles/" + wav_output_filename + ".wav",'wb')
 wavefile.setnchannels(chans)
 wavefile.setsampwidth(audio.get_sample_size(form_1))
 wavefile.setframerate(samp_rate)
