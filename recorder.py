@@ -8,7 +8,7 @@ samp_rate = 44100 # 44.1kHz sampling rate
 chunk = 4096 # 2^12 samples for buffer
 record_secs = 15 # seconds to record
 dev_index = 2 # device index found by p.get_device_info_by_index(ii)
-wav_output_filename = sys.argv # name of .wav file
+wav_output_filename = sys.argv[1] # name of .wav file
 
 audio = pyaudio.PyAudio() # create pyaudio instantiation
 
