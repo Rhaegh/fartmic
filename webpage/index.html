@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="https://cdn-icons-png.flaticon.com/512/43/43922.png"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js" defer></script>
+    <title>Piano</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="h1"><h1>Deez Notes</h1></div>
+      <div class="piano">
+        <div data-note="y" class="key white" id="timerControl"></div>
+        <div data-note="z" class="key black" id="timerControl"></div>
+        <div data-note="0" class="key white" id="timerControl"></div>
+        <div data-note="1" class="key black" id="timerControl"></div>
+        <div data-note="2" class="key white" id="timerControl"></div>
+        <div data-note="3" class="key white" id="timerControl"></div>
+        <div data-note="4" class="key black" id="timerControl"></div>
+        <div data-note="5" class="key white" id="timerControl"></div>
+        <div data-note="6" class="key black" id="timerControl"></div>
+        <div data-note="7" class="key white" id="timerControl"></div>
+        <div data-note="8" class="key black" id="timerControl"></div>
+        <div data-note="9" class="key white" id="timerControl"></div>
+        <div data-note="a" class="key white" id="timerControl"></div>
+        <div data-note="b" class="key black" id="timerControl"></div>
+        <div data-note="c" class="key white" id="timerControl"></div>
+        <div data-note="d" class="key black" id="timerControl"></div>
+        <div data-note="e" class="key white" id="timerControl"></div>
+        <div data-note="f" class="key white" id="timerControl"></div>
+        <div data-note="g" class="key black" id="timerControl"></div>
+        <div data-note="h" class="key white" id="timerControl"></div>
+        <div data-note="i" class="key black" id="timerControl"></div>
+        <div data-note="j" class="key white" id="timerControl"></div>
+        <div data-note="k" class="key black" id="timerControl"></div>
+        <div data-note="l" class="key white" id="timerControl"></div>
+        <div data-note="m" class="key white" id="timerControl"></div>
+        <div data-note="n" class="key black" id="timerControl"></div>
+        <div data-note="o" class="key white" id="timerControl"></div>
+        <div data-note="p" class="key black" id="timerControl"></div>
+        <div data-note="q" class="key white" id="timerControl"></div>
+        <div data-note="r" class="key white" id="timerControl"></div>
+        <div data-note="s" class="key black" id="timerControl"></div>
+        <div data-note="t" class="key white" id="timerControl"></div>
+        <div data-note="u" class="key black" id="timerControl"></div>
+        <div data-note="v" class="key white" id="timerControl"></div>
+        <div data-note="w" class="key black" id="timerControl"></div>
+        <div data-note="x" class="key white" id="timerControl"></div>
+      </div>
+
+      <div class="buttons">
+        <button class="button button1" id="submitbutton" onclick="addjson()">
+          Indienen
+        </button>
+        <button class="button button1" id="clearbutton" onclick="clearbutton()">
+          Opnieuw
+        </button>
+        <input class="textbox" id="name" placeholder="Naam van je muziek" />
+        <button class="button button1" id="namebutton" onclick="getsongname()">
+          Naam indienen
+        </button>
+        <select class="textbox" id="selectNumber" onclick="getAPI()">
+          <option>Kies een liedje</option>
+      </select>
+       <button class="button button1" id="choosebutton" onclick="getchosensong()">
+        Speel nummer
+       </button>
+       <button class="button button1" id="deletebutton" onclick="deletechosensong()">
+        Verwijder nummer
+       </button>
+      </div>
+
+      
+
+      <div id="msg">
+        <pre class="pre"></pre>
+      </div>
+      <div id="device">
+        <pre class="pre"></pre>
+      </div>
+    </div>
+
+    <audio id="y" src="notes/y.mp3"></audio>
+    <audio id="z" src="notes/z.mp3"></audio>
+    <audio id="0" src="notes/0.mp3"></audio>
+    <audio id="1" src="notes/1.mp3"></audio>
+    <audio id="2" src="notes/2.mp3"></audio>
+    <audio id="3" src="notes/3.mp3"></audio>
+    <audio id="4" src="notes/4.mp3"></audio>
+    <audio id="5" src="notes/5.mp3"></audio>
+    <audio id="6" src="notes/6.mp3"></audio>
+    <audio id="7" src="notes/7.mp3"></audio>
+    <audio id="8" src="notes/8.mp3"></audio>
+    <audio id="9" src="notes/9.mp3"></audio>
+    <audio id="a" src="notes/a.mp3"></audio>
+    <audio id="b" src="notes/b.mp3"></audio>
+    <audio id="c" src="notes/c.mp3"></audio>
+    <audio id="d" src="notes/d.mp3"></audio>
+    <audio id="e" src="notes/e.mp3"></audio>
+    <audio id="f" src="notes/f.mp3"></audio>
+    <audio id="g" src="notes/g.mp3"></audio>
+    <audio id="h" src="notes/h.mp3"></audio>
+    <audio id="i" src="notes/i.mp3"></audio>
+    <audio id="j" src="notes/j.mp3"></audio>
+    <audio id="k" src="notes/k.mp3"></audio>
+    <audio id="l" src="notes/l.mp3"></audio>
+    <audio id="m" src="notes/m.mp3"></audio>
+    <audio id="n" src="notes/n.mp3"></audio>
+    <audio id="o" src="notes/o.mp3"></audio>
+    <audio id="p" src="notes/p.mp3"></audio>
+    <audio id="q" src="notes/q.mp3"></audio>
+    <audio id="r" src="notes/r.mp3"></audio>
+    <audio id="s" src="notes/s.mp3"></audio>
+    <audio id="t" src="notes/t.mp3"></audio>
+    <audio id="u" src="notes/u.mp3"></audio>
+    <audio id="v" src="notes/v.mp3"></audio>
+    <audio id="w" src="notes/w.mp3"></audio>
+    <audio id="x" src="notes/x.mp3"></audio>
+  </body>
+</html>

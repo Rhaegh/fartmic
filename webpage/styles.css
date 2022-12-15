@@ -1,0 +1,113 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #4a2bad;
+}
+
+pre {
+  font-family: "Courier New";
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.container {
+  margin: center;
+  min-height: 100vh;
+  padding: 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+.h1 {
+  font-family: "Courier New";
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.piano {
+  display: flex;
+}
+
+.key {
+  height: calc(var(--width) * 4);
+  width: var(--width);
+}
+
+.white {
+  --width: 60px;
+  background-color: white;
+  border: 1px solid #333;
+}
+
+.white.active {
+  background-color: #ccc;
+}
+
+.black {
+  --width: 36px;
+  background-color: black;
+  margin-left: calc(var(--width) / -2);
+  margin-right: calc(var(--width) / -2);
+  z-index: 2;
+}
+
+.black.active {
+  background-color: #333;
+}
+
+.textbox {
+  background-color: #03fcd3; /* Green */
+  color: black;
+  padding: 6px 16px;
+  text-align: center;
+  display: inline-block;
+  font-family: "Courier New";
+  font-weight: bold;
+  font-size: 13px;
+}
+
+::placeholder {
+  color: Black;
+  opacity: 1;
+}
+
+.button {
+  background-color: #03fcd3; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Courier New";
+  font-weight: bold;
+  font-size: 13px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #03fcd3;
+  color: black;
+}
+
+.button1:hover {
+  background-color: #03fcd3;
+  color: white;
+}
