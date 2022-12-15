@@ -1,4 +1,4 @@
-var input = document.getElementById("input");
+var input = "Test";
 var output = document.getElementById("output");
 var socket = new WebSocket("ws://192.168.72.131:8080/todo");
 
