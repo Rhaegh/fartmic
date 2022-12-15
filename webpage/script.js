@@ -19,46 +19,6 @@ var delay = [];
 var songname;
 var chosensong;
 
-keys.forEach(key => {
-	key.addEventListener('click', () => playNote(key))
-	showhide()
-})
-
-document.addEventListener('keydown', e => {
-	if (e.repeat) return
-	const key = e.key
-	const whiteKeyIndex = WHITE_KEYS.indexOf(key)
-	const blackKeyIndex = BLACK_KEYS.indexOf(key)
-
-	if (whiteKeyIndex > -1) playNote(whiteKeys[whiteKeyIndex])
-	if (blackKeyIndex > -1) playNote(blackKeys[blackKeyIndex])
-})
-
-function playNote(key) {
-	if (pianoenabled === true) {
-		const noteAudio = document.getElementById(key.dataset.note)
-		keyforArray(key)
-		showTextwhileplaying()
-		pressButton()
-		noteAudio.currentTime = 0
-		noteAudio.play()
-		key.classList.add('active')
-		noteAudio.addEventListener('ended', () => {
-			key.classList.remove('active')
-		})
-	}
-}
-
-function keyforArray(key) {
-	pressednotes = key.dataset.note
-	notes.push(pressednotes)
-}
-
-function addjson() {
-	httprequest()
-	wait(500);
-	location.reload()
-}
 
 function wait(ms){
 	var start = new Date().getTime();
@@ -67,53 +27,7 @@ function wait(ms){
 	  end = new Date().getTime();
    }
  }
-
-function showTextwhileplaying() {
-	notes.forEach(function (item, index, array) {
-		if (array.length <= 39) {
-			pre.textContent = ('Recording... ' + songname)
-		} else {
-			pre.textContent = ('Maximaal aantal van 40 noten bereikt.')
-			pianoenabled = false
-		}
-	})
-}
-
-function clearbutton() {
-	notes = []
-	delay = []
-	pianoenabled = true
-	showTextwhileplaying()
-	pre.textContent = ('')
-}
-
-function pressButton() {
-	if (timerControl.innerHTML == "Start") {
-	  timerControl.innerHTML = "Stop";
-	  start = Date.now();
-	  timeElapsed = (start - end);
-	} else {
-	  timerControl.innerHTML = "Start";
-	  end = Date.now();
-	  timeElapsed = (end - start);
-	}
-	delay.push(timeElapsed)
-  }
-
-  function getsongname(){
-	if (document.getElementById("name").value.trim() == "") {
-		pre.textContent = ('Vul een naam in.')
-	}else {
-		songname = document.getElementById("name").value;
-		document.getElementById("name").value = "";
-		pianoenabled = true
-		pre.textContent = ('Speel muziek')
-		showtextbox = false
-		showbuttons = true
-		showhide()
-	}
-  }
-
+ 
   function getchosensong(){
 	if (document.getElementById("selectNumber").value.trim() == "Kies een liedje") {
 		pre.textContent = ('kies een nummer.')
@@ -137,26 +51,9 @@ function pressButton() {
 
   function showhide(){
 	if (showtextbox === false) {
-		document.getElementById("name").style.display = 'none';
-		document.getElementById("namebutton").style.display = 'none';
 		document.getElementById("choosebutton").style.display = 'none';
-		document.getElementById("selectNumber").style.display = 'none';
-		document.getElementById("deletebutton").style.display = 'none';
-		document.getElementById("device").style.display = 'none';
 	}else {
-		document.getElementById("name").style.display = '';
-		document.getElementById("namebutton").style.display = '';
 		document.getElementById("choosebutton").style.display = '';
-		document.getElementById("selectNumber").style.display = '';
-		document.getElementById("deletebutton").style.display = '';
-		document.getElementById("device").style.display = '';
-	}
-	if (showbuttons === false){
-		document.getElementById("submitbutton").style.display = 'none';
-		document.getElementById("clearbutton").style.display = 'none';
-	}else {
-		document.getElementById("submitbutton").style.display = '';
-		document.getElementById("clearbutton").style.display = '';
 	}
   }
 
