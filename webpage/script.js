@@ -10,7 +10,10 @@ socket.onmessage = function (e) {
 	output.innerHTML += "Server: " + e.data + "\n";
 };
 
+function isOpen(ws) { return ws.readyState === ws.OPEN }
+
 function send() {
-	socket.send(input.value);
-	input.value = "";
+	if (!isOpen(socket)) return;
+		socket.send(input.value);
+		input.value = "";
 }
