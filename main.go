@@ -42,5 +42,5 @@ func home(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/socket", socketHandler)
 	http.HandleFunc("/", home)
-	log.Fatal(http.ListenAndServe("8080", nil))
+	log.Fatal(http.ListenAndServe("192.168.72.131:8080", nil))
 }
