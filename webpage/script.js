@@ -1,6 +1,6 @@
 var input = document.getElementById("input");
 var output = document.getElementById("output");
-var socket = new WebSocket("ws://192.168.72.131/:8080/todo");
+var socket = new WebSocket("ws://192.168.72.131:8080/todo");
 
 socket.onopen = function () {
   output.innerHTML += "Status: Connected\n";
