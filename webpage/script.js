@@ -1,17 +1,16 @@
-var input = "Test";
+var input = document.getElementById("input");
 var output = document.getElementById("output");
-var socket = new WebSocket("ws://192.168.72.131:8080/todo");
-
+var socket = new WebSocket("ws://localhost:8080/echo");
 
 socket.onopen = function () {
-  output.innerHTML += "Status: Connected\n";
+	output.innerHTML += "Status: Connected\n";
 };
 
 socket.onmessage = function (e) {
-  output.innerHTML += "\nServer: " + e.data + "\n";
+	output.innerHTML += "Server: " + e.data + "\n";
 };
 
 function send() {
-  socket.send(input.value);
-  input.value = "";
+	socket.send(input.value);
+	input.value = "";
 }
