@@ -5,37 +5,42 @@ import (
 	"log"
 	"net/http"
 
-	"code.google.com/p/go.net/websocket"
+	"github.com/gorilla/websocket"
 )
 
-func Echo(ws *websocket.Conn) {
-	var err error
+var upgrader = websocket.Upgrader{} // use default options
 
+func socketHandler(w http.ResponseWriter, r *http.Request) {
+	// Upgrade our raw HTTP connection to a websocket based one
+	conn, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Print("Error during connection upgradation:", err)
+		return
+	}
+	defer conn.Close()
+
+	// The event loop
 	for {
-		var reply string
-
-		if err = websocket.Message.Receive(ws, &reply); err != nil {
-			fmt.Println("Can't receive")
+		messageType, message, err := conn.ReadMessage()
+		if err != nil {
+			log.Println("Error during message reading:", err)
 			break
 		}
-
-		fmt.Println("Received back from client: " + reply)
-
-		msg := "Received:  " + reply
-		fmt.Println("Sending to client: " + msg)
-
-		if err = websocket.Message.Send(ws, msg); err != nil {
-			fmt.Println("Can't send")
+		log.Printf("Received: %s", message)
+		err = conn.WriteMessage(messageType, message)
+		if err != nil {
+			log.Println("Error during message writing:", err)
 			break
 		}
 	}
 }
 
+func home(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Index Page")
+}
+
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("."))) // <-- note this line
-	http.Handle("/socket", websocket.Handler(Echo))
-	log.Println("serving")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal("ListenAndServe:", err)
-	}
+	http.HandleFunc("/socket", socketHandler)
+	http.HandleFunc("/", home)
+	log.Fatal(http.ListenAndServe("localhost:8080", nil))
 }
