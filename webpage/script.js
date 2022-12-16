@@ -1,5 +1,5 @@
 var sock = null;
-var wsuri = "ws://192.168.72.131:8080/socket"; // <-- note new path
+var wsuri = "ws://192.168.72.131:9100/socket"; // <-- note new path
 
 window.onload = function() {
 
