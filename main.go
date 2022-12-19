@@ -6,9 +6,9 @@ import (
 )
 
 func main() {
+
 	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
-			tmpl.Execute(w, nil)
 			fmt.Println("Gelukt")
 			return
 		}
