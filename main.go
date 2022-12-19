@@ -60,7 +60,7 @@ func getfartid() {
 
 	_ = json.Unmarshal([]byte(file), &data)
 
-	fmt.Println(data.ID)
+	fmt.Println(data.ID[1])
 
 }
 
@@ -102,6 +102,7 @@ func writetodatabase() {
 }
 
 func main() {
+	writetodatabase()
 	getfartid()
 	recordbutton()
 }
