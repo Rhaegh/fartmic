@@ -10,10 +10,10 @@ import (
 	"time"
 )
 
-type Scheetjes struct {
+type Fartids struct {
 	ID   string `json:"ID"`
-	Name string `json:"Name"`
-	Date string `json:"Date"`
+	Name string `json: "Name"`
+	Date string `json: "Date"`
 }
 
 func recordbutton() {
@@ -56,11 +56,11 @@ func checkFile(filename string) error {
 func getfartid() {
 	file, _ := ioutil.ReadFile("/home/pi/fartmic/data/db.json")
 
-	data := Scheetjes{}
+	data := Fartids{}
 
 	_ = json.Unmarshal([]byte(file), &data)
 
-	fmt.Println(data.ID[1])
+	fmt.Println(data.Name[1])
 
 }
 
@@ -76,12 +76,12 @@ func writetodatabase() {
 		fmt.Println(err)
 	}
 
-	data := []Scheetjes{}
+	data := []Fartids{}
 
 	json.Unmarshal(file, &data)
 	currenttime := time.Now()
 	currentdatetime := currenttime.Format("2006.01.02 15:04:05")
-	newStruct := &Scheetjes{
+	newStruct := &Fartids{
 		ID:   "1",
 		Name: "Rens",
 		Date: currentdatetime,
