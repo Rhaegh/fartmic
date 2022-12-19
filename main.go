@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
-	"strconv"
 )
 
 type Scheetjes struct {
@@ -62,7 +61,7 @@ func writedatabase() {
 	// Using WriteAll
 	var data [][]string
 	for _, record := range records {
-		row := []string{record.ID, strconv.Itoa(record.Age)}
+		row := []string{record.ID, record.Name}
 		data = append(data, row)
 	}
 	w.WriteAll(data)
