@@ -102,7 +102,6 @@ func writetodatabase() {
 }
 
 func main() {
-	writetodatabase()
 	getfartid()
 	recordbutton()
 }
