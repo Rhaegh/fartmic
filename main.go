@@ -22,9 +22,9 @@ func startrecorder() {
 	app := "python"
 
 	arg0 := "recorder.py"
-	//arg1 := "Hello world"
+	arg1 := "Hello world"
 
-	cmd := exec.Command(app, arg0)
+	cmd := exec.Command(app, arg0, arg1)
 	stdout, err := cmd.Output()
 
 	if err != nil {

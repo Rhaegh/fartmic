@@ -8,7 +8,7 @@ samp_rate = 44100 # 44.1kHz sampling rate
 chunk = 4096 # 2^12 samples for buffer
 record_secs = 5 # seconds to record
 dev_index = 2 # device index found by p.get_device_info_by_index(ii)
-#wav_output_filename = sys.argv[1] # name of .wav file
+wav_output_filename = sys.argv[1] # name of .wav file
 
 audio = pyaudio.PyAudio() # create pyaudio instantiation
 
@@ -32,7 +32,7 @@ stream.close()
 audio.terminate()
 
 # save the audio frames as .wav file
-wavefile = wave.open("/home/pi/fartmic/audiofiles/" + "Bestandje" + ".wav",'wb')
+wavefile = wave.open("/home/pi/fartmic/audiofiles/" + wav_output_filename + ".wav",'wb')
 wavefile.setnchannels(chans)
 wavefile.setsampwidth(audio.get_sample_size(form_1))
 wavefile.setframerate(samp_rate)
