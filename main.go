@@ -24,7 +24,7 @@ func recordbutton() {
 func newestfile() {
 	dir := "/home/pi/fartmic/audiofiles/"
 	files, _ := ioutil.ReadDir(dir)
-	var newestFile int
+	var newestFile string
 	var newestTime int64 = 0
 	for _, f := range files {
 		fi, err := os.Stat(dir + f.Name())
