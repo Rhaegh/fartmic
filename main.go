@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
+	"strings"
 )
 
 func recordbutton() {
@@ -35,7 +37,8 @@ func newestfile() {
 			newestFile = f.Name()
 		}
 	}
-	fmt.Println(newestFile)
+	newfilename := strings.TrimSuffix(newestFile, filepath.Ext(newestFile))
+	fmt.Println(newfilename)
 }
 
 func startrecorder() {
