@@ -53,6 +53,6 @@ func startrecorder() {
 }
 
 func main() {
-	recordbutton()
 	newestfile()
+	recordbutton()
 }
