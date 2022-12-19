@@ -15,10 +15,10 @@ type ContactDetails struct {
 func main() {
 	tmpl := template.Must(template.ParseFiles("webpage/index.html"))
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
 			tmpl.Execute(w, nil)
-			fmt.Println("Button clicked")
+			fmt.Println("Gelukt")
 			return
 		}
 
