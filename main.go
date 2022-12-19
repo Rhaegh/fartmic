@@ -55,23 +55,24 @@ func checkFile(filename string) error {
 }
 
 func getfartid() {
-	// Let's first read the `config.json` file
-	content, err := ioutil.ReadFile("/home/pi/fartmic/data/db.json")
+	fileContent, err := os.Open("users.json")
+
 	if err != nil {
-		log.Fatal("Error when opening file: ", err)
+		log.Fatal(err)
+		return
 	}
 
-	// Now let's unmarshall the data into `payload`
-	var payload Scheetjes
-	err = json.Unmarshal(content, &payload)
-	if err != nil {
-		log.Fatal("Error during Unmarshal(): ", err)
-	}
+	fmt.Println("The File is opened successfully...")
 
-	// Let's print the unmarshalled data!
-	log.Printf("ID: %s\n", payload.ID)
-	log.Printf("user: %s\n", payload.Name)
-	log.Printf("status: %t\n", payload.Date)
+	defer fileContent.Close()
+
+	byteResult, _ := ioutil.ReadAll(fileContent)
+
+	var users Scheetjes
+
+	json.Unmarshal(byteResult, &users)
+	fmt.Println(users.ID[1])
+
 }
 
 func writetodatabase() {
