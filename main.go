@@ -11,9 +11,9 @@ import (
 )
 
 type Fartids struct {
-	ID   string
-	Name string
-	Date string
+	ID   string `json: "ID"`
+	Name string `json: "Name"`
+	Date string `json: "Date"`
 }
 
 func recordbutton() {
