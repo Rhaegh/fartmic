@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -55,23 +54,13 @@ func checkFile(filename string) error {
 }
 
 func getfartid() {
-	fileContent, err := os.Open("/home/pi/fartmic/data/db.json")
+	file, _ := ioutil.ReadFile("/home/pi/fartmic/data/db.json")
 
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	data := Scheetjes{}
 
-	fmt.Println("The File is opened successfully...")
+	_ = json.Unmarshal([]byte(file), &data)
 
-	defer fileContent.Close()
-
-	byteResult, _ := ioutil.ReadAll(fileContent)
-
-	var ids Scheetjes
-
-	json.Unmarshal(byteResult, &ids)
-	fmt.Println(ids.ID[0])
+	fmt.Println(data.ID[1])
 
 }
 
