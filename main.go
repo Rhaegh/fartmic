@@ -58,13 +58,6 @@ func writedatabase() {
 			log.Fatalln("error writing record to file", err)
 		}
 	}
-	// Using WriteAll
-	var data [][]string
-	for _, record := range records {
-		row := []string{record.ID, record.Name}
-		data = append(data, row)
-	}
-	w.WriteAll(data)
 }
 
 func main() {
