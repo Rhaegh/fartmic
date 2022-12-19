@@ -19,7 +19,7 @@ func recordbutton() {
 }
 
 func startrecorder() {
-	cmd := exec.Command("recorder.py Bestandje")
+	cmd := exec.Command("python recorder.py")
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Println(err)
