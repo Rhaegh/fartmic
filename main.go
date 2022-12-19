@@ -7,10 +7,13 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"time"
 )
 
 type MyStruct struct {
-	StructData string `json:"StructData"`
+	ID   string `json:"ID"`
+	Name string `json:"Name"`
+	Date string `json:"Date"`
 }
 
 func recordbutton() {
@@ -51,7 +54,7 @@ func checkFile(filename string) error {
 }
 
 func writetodatabase() {
-	filename := "myFile.json"
+	filename := "/home/pi/fartmic/data/db.json"
 	err := checkFile(filename)
 	if err != nil {
 		fmt.Println(err)
@@ -67,8 +70,12 @@ func writetodatabase() {
 	// Here the magic happens!
 	json.Unmarshal(file, &data)
 
+	currenttime := time.Now()
+	currentdatetime := currenttime.Format("2006.01.02 15:04:05")
 	newStruct := &MyStruct{
-		StructData: "peanut",
+		ID:   "1",
+		Name: "Rens",
+		Date: currentdatetime,
 	}
 
 	data = append(data, *newStruct)
