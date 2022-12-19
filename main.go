@@ -1,18 +1,12 @@
 package main
 
 import (
-	"encoding/csv"
+	"encoding/json"
 	"fmt"
-	"log"
+	"io/ioutil"
 	"net/http"
-	"os"
 	"os/exec"
 )
-
-type Scheetjes struct {
-	ID   string
-	Name string
-}
 
 func recordbutton() {
 	http.HandleFunc("/recordbutton", func(w http.ResponseWriter, r *http.Request) {
@@ -40,27 +34,18 @@ func startrecorder() {
 	fmt.Println(string(stdout))
 }
 
-func writedatabase() {
-	records := []Scheetjes{
-		{"1", "Scheetje van Giel"},
+func writetodatabase() {
+	data := Scheetjes{
+		Id:   "1",
+		Name: "Rens",
 	}
-	file, err := os.Create("/home/pi/fartmic/data/database.csv")
-	defer file.Close()
-	if err != nil {
-		log.Fatalln("failed to open file", err)
-	}
-	w := csv.NewWriter(file)
-	defer w.Flush()
-	// Using Write
-	for _, record := range records {
-		row := []string{record.ID, record.Name}
-		if err := w.Write(row); err != nil {
-			log.Fatalln("error writing record to file", err)
-		}
-	}
+
+	file, _ := json.MarshalIndent(data, "", " ")
+
+	_ = ioutil.WriteFile("/home/pi/fartmic/data/db.json", file, 0644)
 }
 
 func main() {
-	writedatabase()
+	writetodatabase()
 	recordbutton()
 }
