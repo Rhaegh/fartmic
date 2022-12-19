@@ -60,7 +60,7 @@ func getfartid() {
 
 	_ = json.Unmarshal([]byte(file), &data)
 
-	fmt.Println(data.ID[1])
+	fmt.Println(data.ID)
 
 }
 
