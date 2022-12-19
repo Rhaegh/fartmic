@@ -1,16 +1,17 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
-	"time"
 )
 
 type Fartids struct {
+	farts []farts `json: "Farts"`
+}
+
+type farts struct {
 	ID   string `json: "ID"`
 	Name string `json: "Name"`
 	Date string `json: "Date"`
@@ -53,55 +54,6 @@ func checkFile(filename string) error {
 	return nil
 }
 
-func getfartid() {
-	file, _ := ioutil.ReadFile("/home/pi/fartmic/data/db.json")
-
-	var data Fartids
-
-	_ = json.Unmarshal([]byte(file), &data)
-
-	fmt.Println(data.ID)
-
-}
-
-func writetodatabase() {
-	filename := "/home/pi/fartmic/data/db.json"
-	err := checkFile(filename)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	file, err := ioutil.ReadFile(filename)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	data := []Fartids{}
-
-	json.Unmarshal(file, &data)
-	currenttime := time.Now()
-	currentdatetime := currenttime.Format("2006.01.02 15:04:05")
-	newStruct := &Fartids{
-		ID:   "1",
-		Name: "Rens",
-		Date: currentdatetime,
-	}
-
-	data = append(data, *newStruct)
-
-	// Preparing the data to be marshalled and written.
-	dataBytes, err := json.Marshal(data)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	err = ioutil.WriteFile(filename, dataBytes, 0644)
-	if err != nil {
-		fmt.Println(err)
-	}
-}
-
 func main() {
-	getfartid()
 	recordbutton()
 }
