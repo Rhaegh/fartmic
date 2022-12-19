@@ -8,6 +8,11 @@ import (
 	"os/exec"
 )
 
+type Scheetjes struct {
+	Id   string
+	Name string
+}
+
 func recordbutton() {
 	http.HandleFunc("/recordbutton", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
