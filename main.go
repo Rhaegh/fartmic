@@ -44,9 +44,10 @@ func writedatabase() {
 	records := []Scheetjes{
 		{"1", "Scheetje van Giel"},
 	}
-	file, err := os.Open("/home/pi/fartmic/data/database.csv")
+	file, err := os.Create("/home/pi/fartmic/data/database.csv")
+	defer file.Close()
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalln("failed to open file", err)
 	}
 	w := csv.NewWriter(file)
 	defer w.Flush()
@@ -57,7 +58,6 @@ func writedatabase() {
 			log.Fatalln("error writing record to file", err)
 		}
 	}
-
 	// Using WriteAll
 	var data [][]string
 	for _, record := range records {
