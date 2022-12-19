@@ -5,8 +5,8 @@ import (
 	"net/http"
 )
 
-func listener() {
-	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
+func recordbutton() {
+	http.HandleFunc("/recordbutton", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
 			fmt.Println("Gelukt")
 			return
@@ -17,5 +17,5 @@ func listener() {
 }
 
 func main() {
-	listener()
+	recordbutton()
 }
