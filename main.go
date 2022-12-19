@@ -71,7 +71,7 @@ func getfartid() {
 	var users Scheetjes
 
 	json.Unmarshal(byteResult, &users)
-	fmt.Println(users.ID[1])
+	fmt.Println(users.ID)
 
 }
 
