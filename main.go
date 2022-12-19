@@ -68,10 +68,10 @@ func getfartid() {
 
 	byteResult, _ := ioutil.ReadAll(fileContent)
 
-	var users Scheetjes
+	var ids Scheetjes
 
-	json.Unmarshal(byteResult, &users)
-	fmt.Println(users.ID)
+	json.Unmarshal(byteResult, &ids)
+	fmt.Println(ids.ID[0])
 
 }
 
