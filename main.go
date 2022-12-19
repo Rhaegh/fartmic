@@ -55,7 +55,7 @@ func checkFile(filename string) error {
 }
 
 func getfartid() {
-	fileContent, err := os.Open("users.json")
+	fileContent, err := os.Open("/home/pi/fartmic/data/db.json")
 
 	if err != nil {
 		log.Fatal(err)
