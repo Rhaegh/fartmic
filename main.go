@@ -4,13 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
 	"time"
 )
 
-type MyStruct struct {
+type Scheetjes struct {
 	ID   string `json:"ID"`
 	Name string `json:"Name"`
 	Date string `json:"Date"`
@@ -53,6 +54,26 @@ func checkFile(filename string) error {
 	return nil
 }
 
+func getfartid() {
+	// Let's first read the `config.json` file
+	content, err := ioutil.ReadFile("/home/pi/fartmic/data/db.json")
+	if err != nil {
+		log.Fatal("Error when opening file: ", err)
+	}
+
+	// Now let's unmarshall the data into `payload`
+	var payload Scheetjes
+	err = json.Unmarshal(content, &payload)
+	if err != nil {
+		log.Fatal("Error during Unmarshal(): ", err)
+	}
+
+	// Let's print the unmarshalled data!
+	log.Printf("ID: %s\n", payload.ID)
+	log.Printf("user: %s\n", payload.Name)
+	log.Printf("status: %t\n", payload.Date)
+}
+
 func writetodatabase() {
 	filename := "/home/pi/fartmic/data/db.json"
 	err := checkFile(filename)
@@ -65,14 +86,12 @@ func writetodatabase() {
 		fmt.Println(err)
 	}
 
-	data := []MyStruct{}
+	data := []Scheetjes{}
 
-	// Here the magic happens!
 	json.Unmarshal(file, &data)
-
 	currenttime := time.Now()
 	currentdatetime := currenttime.Format("2006.01.02 15:04:05")
-	newStruct := &MyStruct{
+	newStruct := &Scheetjes{
 		ID:   "1",
 		Name: "Rens",
 		Date: currentdatetime,
@@ -93,6 +112,6 @@ func writetodatabase() {
 }
 
 func main() {
-	writetodatabase()
+	getfartid()
 	recordbutton()
 }
