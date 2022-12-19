@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"os/exec"
 )
 
-type Scheetjes struct {
-	Id   string
-	Name string
+type MyStruct struct {
+	StructData string `json:"StructData"`
 }
 
 func recordbutton() {
@@ -39,15 +39,50 @@ func startrecorder() {
 	fmt.Println(string(stdout))
 }
 
+func checkFile(filename string) error {
+	_, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		_, err := os.Create(filename)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func writetodatabase() {
-	data := Scheetjes{
-		Id:   "1",
-		Name: "Rens",
+	filename := "myFile.json"
+	err := checkFile(filename)
+	if err != nil {
+		fmt.Println(err)
 	}
 
-	file, _ := json.MarshalIndent(data, "", " ")
+	file, err := ioutil.ReadFile(filename)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-	_ = ioutil.WriteFile("/home/pi/fartmic/data/db.json", file, 0644)
+	data := []MyStruct{}
+
+	// Here the magic happens!
+	json.Unmarshal(file, &data)
+
+	newStruct := &MyStruct{
+		StructData: "peanut",
+	}
+
+	data = append(data, *newStruct)
+
+	// Preparing the data to be marshalled and written.
+	dataBytes, err := json.Marshal(data)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = ioutil.WriteFile(filename, dataBytes, 0644)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func main() {
