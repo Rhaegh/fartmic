@@ -56,11 +56,11 @@ func checkFile(filename string) error {
 func getfartid() {
 	file, _ := ioutil.ReadFile("/home/pi/fartmic/data/db.json")
 
-	data := Fartids{}
+	data := []Fartids{}
 
 	_ = json.Unmarshal([]byte(file), &data)
 
-	fmt.Println(data.ID[1])
+	fmt.Println(data)
 
 }
 
