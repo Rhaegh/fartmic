@@ -3,8 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
 	"os/exec"
 )
 
@@ -46,7 +47,17 @@ func writedate() {
 	if err != nil {
 		panic(err)
 	}
-	ioutil.WriteFile("/home/pi/fartmic/data/db.json", finaljson, 0644)
+	// If the file doesn't exist, create it, or append to the file
+	f, err := os.OpenFile("/home/pi/fartmic/data/db.json", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if _, err := f.Write([]byte(finaljson)); err != nil {
+		log.Fatal(err)
+	}
+	if err := f.Close(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func main() {
