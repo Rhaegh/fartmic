@@ -1,10 +1,12 @@
 showbuttons = true
+showclock = false
 timedone = false
 showhide()
 
 function send() {
 	setTimeout(countdown, 1000)
 	showbuttons = false
+	showclock = true
 	showhide()
 	const Http = new XMLHttpRequest();
 	const url='http://192.168.72.131:8080/recordbutton';
@@ -24,6 +26,7 @@ function countdown() {
 		setTimeout(countdown, 1000);
 	}else {
 		timedone = true
+		showclock = false
 		showhide()
 	}
 };
@@ -31,19 +34,21 @@ function countdown() {
 function showhide(){
 	if (showbuttons === false){
 		document.getElementById("fartbutton").style.display = 'none';
-		document.getElementById("clock").style.display = '';
+
 	}else {
 		document.getElementById("fartbutton").style.display = '';
+	}
+	if showclock == false{
 		document.getElementById("clock").style.display = 'none';
+	}else{
+		document.getElementById("clock").style.display = '';
 	}
 	if (timedone === true){
 		document.getElementById("fartbutton").style.display = 'none';
-		document.getElementById("clock").style.display = 'none';
 		document.getElementById("savebutton").style.display = '';
 		document.getElementById("name").style.display = '';
 	}else {
 		document.getElementById("fartbutton").style.display = '';
-		document.getElementById("clock").style.display = 'none';
 		document.getElementById("savebutton").style.display = 'none';
 		document.getElementById("name").style.display = 'none';
 	}
