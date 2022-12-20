@@ -44,8 +44,8 @@ func startrecorder() {
 func writedate() {
 	fartdata := []farts{
 		{
-			ID:   1,
-			Name: "Rens",
+			ID:   2,
+			Name: "Loe",
 			Date: "Datumpje",
 		},
 	}
