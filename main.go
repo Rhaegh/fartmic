@@ -18,6 +18,18 @@ func recordbutton() {
 	http.ListenAndServe(":8080", nil)
 }
 
+func savebutton() {
+	http.HandleFunc("/savebutton", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			startrecorder()
+			fmt.Println("save function called")
+			return
+		}
+	})
+
+	http.ListenAndServe(":8080", nil)
+}
+
 func startrecorder() {
 	app := "python"
 	arg0 := "recorder.py"
@@ -33,5 +45,6 @@ func startrecorder() {
 }
 
 func main() {
+	savebutton()
 	recordbutton()
 }
