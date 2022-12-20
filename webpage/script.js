@@ -43,7 +43,7 @@ function showhide(){
 		document.getElementById("name").style.display = '';
 	}else {
 		document.getElementById("fartbutton").style.display = '';
-		document.getElementById("clock").style.display = '';
+		document.getElementById("clock").style.display = 'none';
 		document.getElementById("savebutton").style.display = 'none';
 		document.getElementById("name").style.display = 'none';
 	}
