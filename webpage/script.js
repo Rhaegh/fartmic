@@ -4,7 +4,6 @@ timedone = false
 showhide()
 
 function send() {
-	setTimeout(countdown, 1000)
 	showbuttons = false
 	showclock = true
 	showhide()
@@ -16,6 +15,7 @@ function send() {
 	Http.onreadystatechange = (e) => {
 	  console.log(Http.responseText)
 	}
+	setTimeout(countdown, 1000)
 };
 
 timeLeft = 5;
