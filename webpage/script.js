@@ -10,15 +10,14 @@ function send() {
 	}
 };
 
-function countdown(){
-	var timeleft = 10;
-	var downloadTimer = setInterval(function(){
-	if(timeleft <= 0){
-		clearInterval(downloadTimer);
-		document.getElementById("countdown").innerHTML = "Finished";
-	} else {
-		document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+timeLeft = 10;
+
+function countdown() {
+	timeLeft--;
+	document.getElementById("seconds").innerHTML = String( timeLeft );
+	if (timeLeft > 0) {
+		setTimeout(countdown, 1000);
 	}
-	timeleft -= 1;
-	}, 1000);
-}
+};
+
+setTimeout(countdown, 1000);
