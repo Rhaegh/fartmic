@@ -2,33 +2,26 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os/exec"
 )
 
 func recordbutton() {
-	http.HandleFunc("/recordbutton", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			startrecorder()
-			fmt.Println("recorder function called")
-			savebutton()
-			return
-		}
-	})
-
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/recordbutton", record)
+	http.HandleFunc("/savebutton", save)
+	err := http.ListenAndServe("8080", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
-func savebutton() {
-	http.HandleFunc("/savebutton", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			startrecorder()
-			fmt.Println("save function called")
-			return
-		}
-	})
+func record(w http.ResponseWriter, req *http.Request) {
+	fmt.Println("Recorder")
+}
 
-	http.ListenAndServe(":8080", nil)
+func save(w http.ResponseWriter, req *http.Request) {
+	fmt.Println("saver")
 }
 
 func startrecorder() {
