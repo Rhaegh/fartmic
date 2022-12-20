@@ -1,5 +1,9 @@
+showbuttons = true
+showhide()
+
 function send() {
 	setTimeout(countdown, 1000)
+	showbuttons = false
 	const Http = new XMLHttpRequest();
 	const url='http://192.168.72.131:8080/recordbutton';
 	Http.open("GET", url);
@@ -18,3 +22,13 @@ function countdown() {
 		setTimeout(countdown, 1000);
 	}
 };
+
+function showhide(){
+	if (showbuttons === false){
+		document.getElementById("fartbutton").style.display = 'none';
+		document.getElementById("clock").style.display = '';
+	}else {
+		document.getElementById("fartbutton").style.display = '';
+		document.getElementById("clock").style.display = 'none';
+	}
+}

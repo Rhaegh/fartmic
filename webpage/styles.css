@@ -94,6 +94,15 @@ pre {
 	margin: auto;
 }
 
+span {
+	display: block;
+	width: 100%;
+	margin: auto;
+	padding-top: 60px;
+	text-align: center;
+	font-size: 150px;
+}
+
 .button {
   background-color: #fc0303; /* Green */
   border: none;
