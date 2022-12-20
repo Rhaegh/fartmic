@@ -14,12 +14,6 @@ func recordbutton() {
 			return
 		}
 	})
-	http.HandleFunc("/savebutton", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			fmt.Println("save function called")
-			return
-		}
-	})
 
 	http.ListenAndServe(":8080", nil)
 }
