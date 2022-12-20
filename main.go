@@ -1,20 +1,17 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
-	"os"
 	"os/exec"
 )
 
-type Fartids struct {
-	farts []farts `json: "Farts"`
-}
-
 type farts struct {
-	ID   string `json: "ID"`
-	Name string `json: "Name"`
-	Date string `json: "Date"`
+	ID   int    `json: "id"`
+	Name string `json: "name"`
+	Date string `json: "date"`
 }
 
 func recordbutton() {
@@ -43,15 +40,13 @@ func startrecorder() {
 	fmt.Println(string(stdout))
 }
 
-func checkFile(filename string) error {
-	_, err := os.Stat(filename)
-	if os.IsNotExist(err) {
-		_, err := os.Create(filename)
-		if err != nil {
-			return err
-		}
+func writedate() {
+	fartdata := farts{1, "rens", "datum"}
+	finaljson, err := json.Marshal(fartdata)
+	if err != nil {
+		panic(err)
 	}
-	return nil
+	ioutil.WriteFile("/home/pi/fartmic/data/db.json", finaljson, 0644)
 }
 
 func main() {
