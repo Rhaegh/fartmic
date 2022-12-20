@@ -48,7 +48,7 @@ func readdatabase() {
 	reader := csv.NewReader(file)
 	records, _ := reader.ReadAll()
 
-	fmt.Println(records)
+	fmt.Println(records[1])
 }
 
 func startrecorder() {
