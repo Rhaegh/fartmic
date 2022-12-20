@@ -71,7 +71,7 @@ pre {
 }
 
 .textbox {
-  background-color: #fc0303; /* Green */
+  background-color: #d06262; /* Green */
   color: black;
   padding: 6px 16px;
   text-align: center;
@@ -90,7 +90,7 @@ pre {
 	width: 300px;
 	height: 300px;
 	border-radius: 50%;
-	background-color: lightgrey;
+	background-color: rgb(255, 255, 255);
 	margin: auto;
 }
 
@@ -104,7 +104,7 @@ span {
 }
 
 .button {
-  background-color: #fc0303; /* Green */
+  background-color: #ed9c9c; /* Green */
   border: none;
   color: white;
   padding: 8px 16px;
@@ -120,11 +120,11 @@ span {
 }
 
 .button1 {
-  background-color: #fc0303;
+  background-color: #de8b8b;
   color: black;
 }
 
 .button1:hover {
-  background-color: #03fcd3;
+  background-color: #fc2403;
   color: white;
 }
