@@ -68,7 +68,7 @@ func writedata() {
 }
 
 func readdata() {
-	bytes, err := ioutil.ReadFile("config.json")
+	bytes, err := ioutil.ReadFile("/home/pi/fartmic/data/db.json")
 
 	if err != nil {
 		fmt.Println("Unable to load config file!")
