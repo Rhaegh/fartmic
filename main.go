@@ -50,5 +50,6 @@ func writedate() {
 }
 
 func main() {
+	writedate()
 	recordbutton()
 }
