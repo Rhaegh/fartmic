@@ -40,5 +40,4 @@ func startrecorder() {
 
 func main() {
 	recordbutton()
-	savebutton()
 }
