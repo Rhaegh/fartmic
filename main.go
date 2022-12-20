@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -41,7 +42,7 @@ func startrecorder() {
 	fmt.Println(string(stdout))
 }
 
-func writedate() {
+func writedata() {
 	fartdata := []farts{
 		{
 			ID:   2,
@@ -66,7 +67,26 @@ func writedate() {
 	}
 }
 
+func readdata() {
+	bytes, err := ioutil.ReadFile("config.json")
+
+	if err != nil {
+		fmt.Println("Unable to load config file!")
+		return
+	}
+
+	var config farts
+	err = json.Unmarshal(bytes, &config)
+
+	if err != nil {
+		fmt.Println("JSON decode error!")
+		return
+	}
+
+	fmt.Println(config) // {50.3 ~/plugins/ {500 200 500 500}}
+}
+
 func main() {
-	writedate()
+	readdata()
 	recordbutton()
 }
