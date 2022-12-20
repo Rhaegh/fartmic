@@ -39,7 +39,7 @@ function save(){
 		username = document.getElementById("name").value;
 		document.getElementById("name").value = "";
 		const Http = new XMLHttpRequest();
-		const url='http://192.168.72.131:8080/savebutton?id=' + username;
+		const url='http://192.168.72.131:8080/savebutton?name=' + username;
 		Http.open("GET", url);
 		Http.send();
 		

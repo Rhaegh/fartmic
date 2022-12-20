@@ -1,9 +1,11 @@
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 )
 
@@ -23,8 +25,21 @@ func record(w http.ResponseWriter, req *http.Request) {
 
 func save(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("saver")
-	id := req.URL.Query().Get("id")
-	fmt.Println(id)
+	name := req.URL.Query().Get("name")
+	fmt.Println(name)
+}
+
+func writedatabase() {
+	f, err := os.OpenFile("/home/pi/fartmic/data/data.csv", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	w := csv.NewWriter(f)
+	for i := 0; i < 10; i++ {
+		w.Write([]string{"a", "b", "c"})
+	}
+	w.Flush()
 }
 
 func startrecorder() {
@@ -42,5 +57,6 @@ func startrecorder() {
 }
 
 func main() {
-	listener()
+	//listener()
+	writedatabase()
 }
