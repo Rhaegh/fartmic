@@ -6,12 +6,6 @@ import (
 	"os/exec"
 )
 
-type farts struct {
-	ID   int    `json: "id"`
-	Name string `json: "name"`
-	Date string `json: "date"`
-}
-
 func recordbutton() {
 	http.HandleFunc("/recordbutton", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
