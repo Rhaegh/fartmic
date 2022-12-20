@@ -36,9 +36,7 @@ func writedatabase() {
 		return
 	}
 	w := csv.NewWriter(f)
-	for i := 0; i < 10; i++ {
-		w.Write([]string{"a", "b", "c"})
-	}
+	w.Write([]string{"a", "b", "c"})
 	w.Flush()
 }
 
