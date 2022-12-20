@@ -38,7 +38,7 @@ function showhide(){
 	}else {
 		document.getElementById("fartbutton").style.display = '';
 	}
-	if showclock == false{
+	if (showclock === false){
 		document.getElementById("clock").style.display = 'none';
 	}else{
 		document.getElementById("clock").style.display = '';
