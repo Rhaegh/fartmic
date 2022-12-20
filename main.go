@@ -11,6 +11,7 @@ func recordbutton() {
 		if r.Method != http.MethodPost {
 			startrecorder()
 			fmt.Println("recorder function called")
+			savebutton()
 			return
 		}
 	})
@@ -46,5 +47,4 @@ func startrecorder() {
 
 func main() {
 	recordbutton()
-	savebutton()
 }
