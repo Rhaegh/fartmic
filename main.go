@@ -40,6 +40,17 @@ func writedatabase() {
 	w.Flush()
 }
 
+func readdatabase() {
+	file, err := os.Open("/home/pi/fartmic/data/data.csv")
+	if err != nil {
+		fmt.Println(err)
+	}
+	reader := csv.NewReader(file)
+	records, _ := reader.ReadAll()
+
+	fmt.Println(records)
+}
+
 func startrecorder() {
 	app := "python"
 	arg0 := "recorder.py"
@@ -56,5 +67,6 @@ func startrecorder() {
 
 func main() {
 	//listener()
-	writedatabase()
+	//writedatabase()
+	readdatabase()
 }
