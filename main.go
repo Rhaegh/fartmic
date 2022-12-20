@@ -23,6 +23,8 @@ func record(w http.ResponseWriter, req *http.Request) {
 
 func save(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("saver")
+	id := req.URL.Query().Get("id")
+	fmt.Println("id =>", id)
 }
 
 func startrecorder() {
