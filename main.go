@@ -85,6 +85,7 @@ func readdata() {
 }
 
 func main() {
+	writedata()
 	readdata()
 	recordbutton()
 }
