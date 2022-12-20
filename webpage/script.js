@@ -33,15 +33,21 @@ function countdown() {
 };
 
 function save(){
-	const Http = new XMLHttpRequest();
-	const url='http://192.168.72.131:8080/savebutton?id=abc';
-	Http.open("GET", url);
-	Http.send();
-	
-	Http.onreadystatechange = (e) => {
-	  console.log(Http.responseText)
+	if (document.getElementById("name").value.trim() == "") {
+		pre.textContent = ('Vul een naam in.')
+	}else {
+		username = document.getElementById("name").value;
+		document.getElementById("name").value = "";
+		const Http = new XMLHttpRequest();
+		const url='http://192.168.72.131:8080/savebutton?id=' + username;
+		Http.open("GET", url);
+		Http.send();
+		
+		Http.onreadystatechange = (e) => {
+		  console.log(Http.responseText)
+		}
+		location.reload();
 	}
-	location.reload();
 }
 
 function showhide(){
