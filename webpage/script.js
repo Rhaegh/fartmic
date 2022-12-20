@@ -27,6 +27,7 @@ function countdown() {
 	}else {
 		timedone = true
 		showclock = false
+		showbuttons = false
 		showhide()
 	}
 };
@@ -44,11 +45,9 @@ function showhide(){
 		document.getElementById("clock").style.display = '';
 	}
 	if (timedone === true){
-		document.getElementById("fartbutton").style.display = 'none';
 		document.getElementById("savebutton").style.display = '';
 		document.getElementById("name").style.display = '';
 	}else {
-		document.getElementById("fartbutton").style.display = '';
 		document.getElementById("savebutton").style.display = 'none';
 		document.getElementById("name").style.display = 'none';
 	}
