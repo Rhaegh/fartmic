@@ -43,12 +43,10 @@ func startrecorder() {
 }
 
 func writedata() {
-	fartdata := []farts{
-		{
-			ID:   2,
-			Name: "Loe",
-			Date: "Datumpje",
-		},
+	fartdata := farts{
+		ID:   2,
+		Name: "Loe",
+		Date: "Datumpje",
 	}
 	finaljson, err := json.Marshal(fartdata)
 	if err != nil {
