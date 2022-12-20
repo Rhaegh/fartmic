@@ -86,6 +86,14 @@ pre {
   opacity: 1;
 }
 
+#clock {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	background-color: lightgrey;
+	margin: auto;
+}
+
 .button {
   background-color: #fc0303; /* Green */
   border: none;
