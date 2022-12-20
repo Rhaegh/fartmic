@@ -34,7 +34,7 @@ function countdown() {
 
 function save(){
 	const Http = new XMLHttpRequest();
-	const url='http://192.168.72.131:8080/savebutton';
+	const url='http://192.168.72.131:8081/savebutton';
 	Http.open("GET", url);
 	Http.send();
 	
