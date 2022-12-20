@@ -7,7 +7,7 @@ import (
 	"os/exec"
 )
 
-func recordbutton() {
+func listener() {
 	http.HandleFunc("/recordbutton", record)
 	http.HandleFunc("/savebutton", save)
 	err := http.ListenAndServe("192.168.72.131:8080", nil)
@@ -17,6 +17,7 @@ func recordbutton() {
 }
 
 func record(w http.ResponseWriter, req *http.Request) {
+	startrecorder()
 	fmt.Println("Recorder")
 }
 
@@ -39,5 +40,5 @@ func startrecorder() {
 }
 
 func main() {
-	recordbutton()
+	listener()
 }
