@@ -1,4 +1,5 @@
 showbuttons = true
+timedone = false
 showhide()
 
 function send() {
@@ -21,6 +22,9 @@ function countdown() {
 	document.getElementById("seconds").innerHTML = String( timeLeft );
 	if (timeLeft > 0) {
 		setTimeout(countdown, 1000);
+	}else {
+		timedone = true
+		showhide()
 	}
 };
 
@@ -31,5 +35,16 @@ function showhide(){
 	}else {
 		document.getElementById("fartbutton").style.display = '';
 		document.getElementById("clock").style.display = 'none';
+	}
+	if (timedone === true){
+		document.getElementById("fartbutton").style.display = 'none';
+		document.getElementById("clock").style.display = 'none';
+		document.getElementById("savebutton").style.display = '';
+		document.getElementById("name").style.display = '';
+	}else {
+		document.getElementById("fartbutton").style.display = '';
+		document.getElementById("clock").style.display = '';
+		document.getElementById("savebutton").style.display = 'none';
+		document.getElementById("name").style.display = 'none';
 	}
 }
