@@ -35,8 +35,11 @@ func writedatabase() {
 		fmt.Println(err)
 		return
 	}
+	data := [][]string{
+		{"id", "first_name", "last_name", "email"},
+	}
 	w := csv.NewWriter(f)
-	w.Write([]string{"a", "b", "c"})
+	w.WriteAll(data)
 	w.Flush()
 }
 
@@ -67,6 +70,6 @@ func startrecorder() {
 
 func main() {
 	//listener()
-	//writedatabase()
-	readdatabase()
+	writedatabase()
+	//readdatabase()
 }
