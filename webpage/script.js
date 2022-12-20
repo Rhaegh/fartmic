@@ -32,6 +32,10 @@ function countdown() {
 	}
 };
 
+function save(){
+	location.reload();
+}
+
 function showhide(){
 	if (showbuttons === false){
 		document.getElementById("fartbutton").style.display = 'none';
